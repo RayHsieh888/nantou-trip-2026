@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2025.12.25 南投深度慢旅｜專業行程手冊</title>
+    <title>2025.12.25 南投深度慢旅｜手冊級行程表</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -52,7 +52,6 @@
 
         h1 { margin: 10px 0; font-size: 2.2rem; }
 
-        /* 行程卡片 */
         .event-card {
             background: var(--card-bg);
             border-radius: 20px;
@@ -88,7 +87,7 @@
             padding: 12px; border-radius: 12px; font-weight: bold;
         }
 
-        /* 翻譯助理優化樣式 */
+        /* 翻譯助理樣式 */
         .translator {
             background: #2c3e50;
             color: white;
@@ -104,8 +103,6 @@
             background: rgba(255,255,255,0.1); padding: 10px; border-radius: 50px;
             margin-bottom: 15px; cursor: pointer; border: 1px solid rgba(255,255,255,0.2);
         }
-
-        .input-area { position: relative; }
 
         textarea {
             width: 100%; border-radius: 15px; padding: 15px; font-size: 1rem;
@@ -139,9 +136,8 @@
         .speak-btn {
             background: none; border: 1px solid rgba(255,255,255,0.5); color: white;
             padding: 8px 15px; border-radius: 8px; margin-top: 12px; cursor: pointer;
-            font-size: 0.9rem; transition: 0.3s;
+            font-size: 0.9rem;
         }
-        .speak-btn:hover { background: rgba(255,255,255,0.1); }
 
         footer { text-align: center; padding: 50px 20px; color: #999; font-size: 0.9rem; }
     </style>
@@ -156,7 +152,7 @@
 
 <div class="container">
 
-    <!-- 行程：集元果 -->
+    <!-- 行程卡片：集元果 -->
     <div class="event-card">
         <span class="time-tag">09:00 - 11:30</span>
         <div class="place-name">集元果觀光工廠</div>
@@ -167,7 +163,7 @@
         <a href="https://www.google.com/maps/search/?api=1&query=集元果觀光工廠" class="btn-nav" target="_blank">Google 導航</a>
     </div>
 
-    <!-- 行程：榕樹下 -->
+    <!-- 行程卡片：榕樹下 -->
     <div class="event-card">
         <span class="time-tag">12:00 - 13:00</span>
         <div class="place-name">榕樹下扣仔嗲</div>
@@ -188,11 +184,11 @@
             <span id="langTo">English</span>
         </div>
 
+        <!-- 狀態提醒，會顯示正在輸入... -->
         <div class="status-indicator" id="statusMsg"></div>
 
         <div class="input-area">
-            <!-- 加入 oninput 監聽打字 -->
-            <textarea id="inputText" rows="3" placeholder="在此輸入文字，系統將自動翻譯..." oninput="handleTyping()"></textarea>
+            <textarea id="inputText" rows="3" placeholder="在此輸入文字，停頓 3 秒後自動翻譯..." oninput="handleTyping()"></textarea>
         </div>
 
         <div class="button-group">
@@ -220,36 +216,32 @@
 
 <script>
     let mode = 'zh-en';
-    let typingTimer; // 計時器，用來感應打字停頓
-    const doneTypingInterval = 1000; // 打字停止 1 秒後觸發翻譯
+    let typingTimer; 
+    const doneTypingInterval = 3000; // 已調整為 3000 毫秒 (3秒)
 
     const recognition = window.SpeechRecognition || window.webkitSpeechRecognition ? new (window.SpeechRecognition || window.webkitSpeechRecognition)() : null;
 
-    // 切換語言
     function toggleLanguage() {
         if (mode === 'zh-en') {
             mode = 'en-zh';
             document.getElementById('langFrom').innerText = 'English';
             document.getElementById('langTo').innerText = '繁體中文';
-            document.getElementById('inputText').placeholder = 'Type here to translate...';
         } else {
             mode = 'zh-en';
             document.getElementById('langFrom').innerText = '繁體中文';
             document.getElementById('langTo').innerText = 'English';
-            document.getElementById('inputText').placeholder = '在此輸入文字，系統將自動翻譯...';
         }
-        // 切換完語言後，如果有內容就重翻
         if(document.getElementById('inputText').value) translateNow();
     }
 
-    // 處理打字輸入 (Debounce 功能)
+    // 處理打字
     function handleTyping() {
         clearTimeout(typingTimer);
-        document.getElementById('statusMsg').innerText = "正在輸入...";
+        document.getElementById('statusMsg').innerText = "系統偵測輸入中，將於停止 3 秒後自動翻譯...";
         typingTimer = setTimeout(translateNow, doneTypingInterval);
     }
 
-    // 執行翻譯 (呼叫 API)
+    // 執行翻譯
     async function translateNow() {
         const text = document.getElementById('inputText').value.trim();
         const statusMsg = document.getElementById('statusMsg');
@@ -270,23 +262,22 @@
             if (data.responseData) {
                 document.getElementById('outputContainer').style.display = 'block';
                 document.getElementById('outputText').innerText = data.responseData.translatedText;
-                statusMsg.innerText = "完成";
+                statusMsg.innerText = "翻譯完成";
             }
         } catch (e) {
-            statusMsg.innerText = "網路連線異常";
+            statusMsg.innerText = "連線失敗，請檢查網路";
         }
     }
 
-    // 語音輸入 (STT)
+    // 語音輸入
     function startSTT() {
-        if (!recognition) return alert("您的裝置不支援語音辨識");
+        if (!recognition) return alert("不支援語音");
         recognition.lang = mode === 'zh-en' ? 'zh-TW' : 'en-US';
         recognition.start();
         document.getElementById('micBtn').innerText = "正在聆聽...";
         
         recognition.onresult = (e) => {
-            const resultText = e.results[0][0].transcript;
-            document.getElementById('inputText').value = resultText;
+            document.getElementById('inputText').value = e.results[0][0].transcript;
             translateNow();
         };
         
@@ -295,7 +286,7 @@
         };
     }
 
-    // 播放聲音 (TTS)
+    // 播放聲音
     function speakOut() {
         const text = document.getElementById('outputText').innerText;
         if (!text) return;

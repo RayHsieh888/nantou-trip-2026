@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2025.12.25 南投深度慢旅｜手冊級行程表</title>
+    <title>2025.12.25 南投深度慢旅｜專業手冊最終版</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #7d0a0a; 
+            --primary-color: #7d0a0a; /* 經典深紅 */
             --secondary-color: #a04040;
             --accent-color: #c0392b;
             --bg-color: #fdfaf6;
@@ -50,14 +50,29 @@
             margin-bottom: 15px;
         }
 
-        h1 { margin: 10px 0; font-size: 2.2rem; }
+        h1 { margin: 10px 0; font-size: 2.2rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
 
+        /* 旅遊提示區塊 */
+        .travel-tip {
+            background: #fff5f5;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 25px 0;
+            border-left: 5px solid var(--primary-color);
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        .travel-tip i { color: var(--primary-color); font-size: 1.5rem; margin-top: 5px; }
+
+        /* 行程卡片 */
         .event-card {
             background: var(--card-bg);
             border-radius: 20px;
             padding: 25px;
             margin-bottom: 30px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
         }
 
         .time-tag {
@@ -81,13 +96,25 @@
         }
         .info-item { display: flex; align-items: center; gap: 8px; color: var(--text-sub); }
 
+        .detail-content {
+            background: #fcfcfc;
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid #f0f0f0;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        .detail-content strong { color: var(--primary-color); }
+        
+        .menu-list { padding-left: 20px; margin: 10px 0; font-size: 0.95rem; }
+
         .btn-nav {
             display: flex; align-items: center; justify-content: center; gap: 10px;
             background: var(--primary-color); color: white; text-decoration: none;
-            padding: 12px; border-radius: 12px; font-weight: bold;
+            padding: 12px; border-radius: 12px; font-weight: bold; transition: 0.3s;
         }
 
-        /* 翻譯助理樣式 */
+        /* 翻譯工具樣式 (深藍色底) */
         .translator {
             background: #2c3e50;
             color: white;
@@ -140,6 +167,8 @@
         }
 
         footer { text-align: center; padding: 50px 20px; color: #999; font-size: 0.9rem; }
+
+        @media (max-width: 480px) { .info-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -147,36 +176,104 @@
 <header>
     <div class="date-badge">CHRISTMAS 2025</div>
     <h1>南投深度慢旅</h1>
-    <p>最終行程確認單 (含即時翻譯助理)</p>
+    <p>最終行程手冊 (含即時翻譯功能)</p>
 </header>
 
 <div class="container">
 
-    <!-- 行程卡片：集元果 -->
-    <div class="event-card">
-        <span class="time-tag">09:00 - 11:30</span>
-        <div class="place-name">集元果觀光工廠</div>
-        <div class="info-grid">
-            <div class="info-item"><i class="fas fa-map-marker-alt"></i> 集集鎮大坪巷38號</div>
-            <div class="info-item"><i class="fas fa-info-circle"></i> 香蕉生態、手作體驗</div>
+    <!-- 聖誕節特別提醒 -->
+    <div class="travel-tip">
+        <i class="fas fa-gift"></i>
+        <div>
+            <strong>聖誕旅遊小筆記</strong><br>
+            今日景點皆正常營業。12月為南投花卉月，沿途落羽松美景請多加留意。草屯路段車流較多，請放慢速度。
         </div>
-        <a href="https://www.google.com/maps/search/?api=1&query=集元果觀光工廠" class="btn-nav" target="_blank">Google 導航</a>
     </div>
 
-    <!-- 行程卡片：榕樹下 -->
+    <!-- 第一站 -->
     <div class="event-card">
-        <span class="time-tag">12:00 - 13:00</span>
-        <div class="place-name">榕樹下扣仔嗲</div>
+        <span class="time-tag">09:00 - 11:30｜深度人文生態</span>
+        <div class="place-name">集元果觀光工廠 (集集)</div>
+        
         <div class="info-grid">
-            <div class="info-item"><i class="fas fa-parking"></i> 導航至：仁愛公園停車場</div>
-            <div class="info-item"><i class="fas fa-utensils"></i> 在地炸物美食</div>
+            <div class="info-item"><i class="fas fa-clock"></i> 09:00-17:30</div>
+            <div class="info-item"><i class="fas fa-ticket-alt"></i> 免費參觀</div>
+            <div class="info-item"><i class="fas fa-parking"></i> 附大型停車場</div>
         </div>
-        <a href="https://www.google.com/maps/search/?api=1&query=草屯仁愛公園停車場" class="btn-nav" style="background:#5d6d7e;" target="_blank">導航至停車場</a>
+
+        <div class="detail-content">
+            <strong>【景點深度：天皇御用的美味】</strong><br>
+            集集山蕉在日治時期是送往日本皇室的「御用貢品」。園區內種植超過 100 種以上的特殊蕉種。
+        </div>
+
+        <strong>必吃/必買清單：</strong>
+        <ul class="menu-list">
+            <li><strong>森林餐廳：</strong>山蕉蛋糕、蕉花拿鐵。</li>
+            <li><strong>精選伴手：</strong>山蕉捲捲酥、金蕉條。</li>
+        </ul>
+
+        <a href="https://www.google.com/maps/search/?api=1&query=集元果觀光工廠" class="btn-nav" target="_blank">
+            <i class="fas fa-location-arrow"></i> 開啟導航
+        </a>
+    </div>
+
+    <!-- 第二站 -->
+    <div class="event-card">
+        <span class="time-tag">12:00 - 13:00｜一甲子在地老味</span>
+        <div class="place-name">榕樹下扣仔嗲 (草屯)</div>
+
+        <div class="info-grid">
+            <div class="info-item"><i class="fas fa-clock"></i> 08:30-19:30</div>
+            <div class="info-item"><i class="fas fa-award"></i> 500碗推薦老店</div>
+            <div class="info-item"><i class="fas fa-parking"></i> 請停仁愛公園</div>
+        </div>
+
+        <div class="detail-content">
+            <strong>【景點深度：沒招牌的傳統】</strong><br>
+            經營超過 60 年，必沾特調「賓士醬」(白甜醬+橘辣醬+醬油膏)。
+        </div>
+
+        <strong>推薦點餐：</strong>
+        <ul class="menu-list">
+            <li><strong>炸物：</strong>蚵嗲、肉嗲、紮實米腸、韭菜條。</li>
+            <li><strong>湯品：</strong>綜合湯 (只要銅板價)。</li>
+        </ul>
+
+        <a href="https://www.google.com/maps/search/?api=1&query=草屯仁愛公園停車場" class="btn-nav" style="background: #5d6d7e;" target="_blank">
+            <i class="fas fa-parking"></i> 導航至「仁愛停車場」
+        </a>
+    </div>
+
+    <!-- 第三站 -->
+    <div class="event-card">
+        <span class="time-tag">13:15 - 14:00｜回程前休息站</span>
+        <div class="place-name">九二咖啡故事館 (國姓)</div>
+
+        <div class="info-grid">
+            <div class="info-item"><i class="fas fa-clock"></i> 10:00-18:00</div>
+            <div class="info-item"><i class="fas fa-coffee"></i> 產地直送精品豆</div>
+            <div class="info-item"><i class="fas fa-store"></i> 舊穀倉改建</div>
+        </div>
+
+        <div class="detail-content">
+            <strong>【景點深度：廢棄穀倉的重生】</strong><br>
+            原為農會舊穀倉，保留了古老碾米機。是 921 地震後國姓鄉產業轉型的象徵。
+        </div>
+
+        <strong>私房推薦：</strong>
+        <ul class="menu-list">
+            <li><strong>在地精品：</strong>國姓手沖咖啡（中深焙香氣）。</li>
+            <li><strong>農產：</strong>國姓梅子產品、咖啡掛耳包。</li>
+        </ul>
+
+        <a href="https://www.google.com/maps/search/?api=1&query=九二咖啡故事館" class="btn-nav" target="_blank">
+            <i class="fas fa-location-arrow"></i> 開啟導航
+        </a>
     </div>
 
     <!-- 翻譯助理區塊 -->
     <section class="translator">
-        <h3><i class="fas fa-language"></i> 即時翻譯助理</h3>
+        <h3><i class="fas fa-language"></i> 隨身翻譯助理</h3>
         
         <div class="lang-switch" onclick="toggleLanguage()">
             <span id="langFrom">繁體中文</span>
@@ -184,11 +281,10 @@
             <span id="langTo">English</span>
         </div>
 
-        <!-- 狀態提醒，會顯示正在輸入... -->
         <div class="status-indicator" id="statusMsg"></div>
 
         <div class="input-area">
-            <textarea id="inputText" rows="3" placeholder="在此輸入文字，停頓 3 秒後自動翻譯..." oninput="handleTyping()"></textarea>
+            <textarea id="inputText" rows="3" placeholder="打字後停頓 3 秒會自動翻譯..." oninput="handleTyping()"></textarea>
         </div>
 
         <div class="button-group">
@@ -203,7 +299,7 @@
         <div id="outputContainer" style="display:none;">
             <p id="outputText"></p>
             <button class="speak-btn" onclick="speakOut()">
-                <i class="fas fa-volume-up"></i> 播放聲音 (TTS)
+                <i class="fas fa-volume-up"></i> 播放聲音
             </button>
         </div>
     </section>
@@ -211,13 +307,14 @@
 </div>
 
 <footer>
-    &copy; 2025 Nantou Trip | 祝您旅途愉快
+    &copy; 2025 Nantou Slow Travel Plan<br>
+    祝您在南投度過一個溫馨的聖誕節
 </footer>
 
 <script>
     let mode = 'zh-en';
     let typingTimer; 
-    const doneTypingInterval = 3000; // 已調整為 3000 毫秒 (3秒)
+    const doneTypingInterval = 3000; // 已設定為 3 秒
 
     const recognition = window.SpeechRecognition || window.webkitSpeechRecognition ? new (window.SpeechRecognition || window.webkitSpeechRecognition)() : null;
 
@@ -231,13 +328,12 @@
             document.getElementById('langFrom').innerText = '繁體中文';
             document.getElementById('langTo').innerText = 'English';
         }
-        if(document.getElementById('inputText').value) translateNow();
     }
 
-    // 處理打字
+    // 處理打字 (3秒計時)
     function handleTyping() {
         clearTimeout(typingTimer);
-        document.getElementById('statusMsg').innerText = "系統偵測輸入中，將於停止 3 秒後自動翻譯...";
+        document.getElementById('statusMsg').innerText = "系統計時 3 秒後自動翻譯...";
         typingTimer = setTimeout(translateNow, doneTypingInterval);
     }
 
@@ -252,7 +348,7 @@
             return;
         }
 
-        statusMsg.innerText = "翻譯中...";
+        statusMsg.innerText = "正在翻譯中...";
         const langPair = mode === 'zh-en' ? 'zh-TW|en' : 'en|zh-TW';
         
         try {
@@ -265,11 +361,11 @@
                 statusMsg.innerText = "翻譯完成";
             }
         } catch (e) {
-            statusMsg.innerText = "連線失敗，請檢查網路";
+            statusMsg.innerText = "連線失敗";
         }
     }
 
-    // 語音輸入
+    // 語音輸入 (STT)
     function startSTT() {
         if (!recognition) return alert("不支援語音");
         recognition.lang = mode === 'zh-en' ? 'zh-TW' : 'en-US';
@@ -286,7 +382,7 @@
         };
     }
 
-    // 播放聲音
+    // 播放聲音 (TTS)
     function speakOut() {
         const text = document.getElementById('outputText').innerText;
         if (!text) return;

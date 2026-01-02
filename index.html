@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2025.12.25 南投深度慢旅行程表</title>
+    <title>2025.12.25 南投深度慢旅 (含即時翻譯)</title>
     <!-- 引入 Google 字體與 Icon -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #2d5a27; /* 森林綠 */
-            --secondary-color: #8da05e;
-            --accent-color: #e67e22; /* 暖橘 - 提示 */
-            --bg-color: #f8f9f5;
+            --primary-color: #8b0000; /* 深紅色 */
+            --secondary-color: #a52a2a; /* 棕紅色 */
+            --accent-color: #d35400; /* 橘色點綴 */
+            --bg-color: #fffaf0;
             --card-bg: #ffffff;
-            --text-color: #333;
+            --text-color: #2c3e50;
         }
 
         body {
@@ -24,6 +24,7 @@
             line-height: 1.6;
             margin: 0;
             padding: 0;
+            padding-bottom: 50px;
         }
 
         .container {
@@ -35,43 +36,141 @@
         header {
             text-align: center;
             padding: 40px 20px;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1590424753062-32517f3801fc?auto=format&fit=crop&w=800&q=80'); /* 森林意境圖 */
+            background: linear-gradient(rgba(139,0,0,0.8), rgba(139,0,0,0.8)), url('https://images.unsplash.com/photo-1518173946687-a4c8a9833d8e?auto=format&fit=crop&w=800&q=80');
             background-size: cover;
             background-position: center;
             color: white;
             border-radius: 0 0 30px 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
         .date-badge {
-            background: var(--accent-color);
+            background: #fff;
+            color: var(--primary-color);
             padding: 5px 15px;
             border-radius: 20px;
             font-size: 0.9rem;
             font-weight: bold;
         }
 
-        h1 { margin: 15px 0 5px 0; font-size: 1.8rem; }
-        .subtitle { font-weight: 300; opacity: 0.9; }
+        /* 翻譯工具樣式 */
+        .tool-section {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 25px;
+            margin-top: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border: 2px solid var(--primary-color);
+        }
 
-        /* 時間軸樣式 */
-        .timeline {
+        .tool-title {
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .lang-switch {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 50px;
+            margin-bottom: 20px;
+            gap: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .lang-switch:active { transform: scale(0.98); }
+        .lang-label { font-weight: bold; color: var(--secondary-color); }
+
+        .input-group {
             position: relative;
-            margin: 30px 0;
-            padding-left: 20px;
+            margin-bottom: 15px;
         }
 
-        .timeline::before {
-            content: '';
+        textarea {
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 15px;
+            box-sizing: border-box;
+            font-size: 1rem;
+            min-height: 100px;
+            resize: none;
+            font-family: inherit;
+        }
+
+        .mic-btn {
             position: absolute;
-            left: 5px;
-            top: 5px;
-            bottom: 5px;
-            width: 2px;
-            background: var(--secondary-color);
-            opacity: 0.3;
+            right: 10px;
+            bottom: 10px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
+        .mic-btn.recording {
+            background: #e74c3c;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .action-btns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: 0.3s;
+        }
+
+        .btn-translate { background: var(--primary-color); color: white; width: 100%; margin-bottom: 10px; }
+        .btn-clear { background: #eee; color: #666; }
+        .btn-speak { background: var(--secondary-color); color: white; }
+
+        .result-box {
+            background: #fff8f8;
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 8px;
+            min-height: 50px;
+        }
+
+        .result-text { font-size: 1.1rem; color: #333; margin-bottom: 10px; }
+
+        /* 行程表樣式調整為深紅 */
+        .timeline { position: relative; margin: 30px 0; padding-left: 20px; }
+        .timeline::before { content: ''; position: absolute; left: 5px; top: 5px; bottom: 5px; width: 2px; background: var(--primary-color); opacity: 0.3; }
         .event-card {
             background: var(--card-bg);
             border-radius: 15px;
@@ -79,109 +178,15 @@
             margin-bottom: 25px;
             position: relative;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            border-left: 5px solid var(--secondary-color);
+            border-left: 5px solid var(--primary-color);
         }
-
-        .event-card.alert {
-            border-left: 5px solid var(--accent-color);
-        }
-
-        .time {
-            font-weight: 700;
-            color: var(--primary-color);
-            display: block;
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-        }
-
-        .event-card h2 {
-            margin: 0 0 10px 0;
-            font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .event-card h2 i {
-            margin-right: 10px;
-            color: var(--primary-color);
-        }
-
-        .tag-row {
-            margin-bottom: 15px;
-        }
-
-        .tag {
-            background: #f0f4ef;
-            color: var(--primary-color);
-            padding: 3px 10px;
-            border-radius: 5px;
-            font-size: 0.85rem;
-            margin-right: 5px;
-        }
-
-        .content {
-            font-size: 0.95rem;
-            color: #555;
-        }
-
-        .highlight-box {
-            background: #fff8ee;
-            border: 1px dashed var(--accent-color);
-            padding: 12px;
-            border-radius: 10px;
-            margin-top: 15px;
-        }
-
+        .time { font-weight: 700; color: var(--primary-color); display: block; margin-bottom: 5px; }
         .btn-nav {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--primary-color);
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 10px;
-            margin-top: 15px;
-            width: 100%;
-            box-sizing: border-box;
-            font-weight: bold;
-            transition: background 0.3s;
+            display: flex; align-items: center; justify-content: center;
+            background: var(--primary-color); color: white; text-decoration: none;
+            padding: 10px; border-radius: 8px; margin-top: 15px; font-weight: bold;
         }
-
-        .btn-nav:hover { background: #1e3d1a; }
-        .btn-nav i { margin-right: 8px; }
-
-        .parking-btn {
-            background: #5d6d7e;
-        }
-
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            color: #888;
-            font-size: 0.85rem;
-        }
-
-        .status-dot {
-            position: absolute;
-            left: -21px;
-            top: 25px;
-            width: 10px;
-            height: 10px;
-            background: var(--secondary-color);
-            border-radius: 50%;
-            border: 3px solid var(--bg-color);
-        }
-
-        .alert .status-dot {
-            background: var(--accent-color);
-        }
-
-        /* 手機端優化 */
-        @media (max-width: 480px) {
-            .container { padding: 15px; }
-            h1 { font-size: 1.5rem; }
-        }
+        footer { text-align: center; padding: 40px; color: #888; }
     </style>
 </head>
 <body>
@@ -194,107 +199,162 @@
 
 <div class="container">
     
-    <div class="timeline">
+    <!-- 翻譯助理區塊 -->
+    <section class="tool-section">
+        <div class="tool-title"><i class="fas fa-language"></i> 隨身翻譯官</div>
         
-        <!-- 出發點 -->
-        <div class="event-card alert">
-            <div class="status-dot"></div>
-            <span class="time">07:00</span>
-            <h2><i class="fas fa-car-side"></i> 桃園準時出發</h2>
-            <div class="content">
-                <strong>重點提示：</strong> 務必 7 點前上國道三號，避開龍潭至新竹段的假日南下車潮。
-            </div>
+        <div class="lang-switch" onclick="toggleLanguage()">
+            <span class="lang-label" id="langFromText">繁體中文</span>
+            <i class="fas fa-exchange-alt" style="color:#999"></i>
+            <span class="lang-label" id="langToText">英文 (English)</span>
         </div>
 
-        <!-- 第一站 -->
+        <div class="input-group">
+            <textarea id="inputText" placeholder="請輸入文字或點擊右下角麥克風說話..."></textarea>
+            <button class="mic-btn" id="micBtn" onclick="startSpeechRecognition()">
+                <i class="fas fa-microphone"></i>
+            </button>
+        </div>
+
+        <button class="btn btn-translate" onclick="performTranslation()">
+            <i class="fas fa-magic"></i> 開始翻譯
+        </button>
+
+        <div class="result-box" id="resultArea" style="display:none;">
+            <div class="result-text" id="outputText">...</div>
+            <div class="action-btns">
+                <button class="btn btn-clear" onclick="clearAll()"><i class="fas fa-trash"></i> 清除</button>
+                <button class="btn btn-speak" onclick="speakResult()"><i class="fas fa-volume-up"></i> 朗讀結果</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 原有行程區塊 (色調更新) -->
+    <div class="timeline">
         <div class="event-card">
-            <div class="status-dot"></div>
+            <span class="time">07:00 桃園出發</span>
+            <h3><i class="fas fa-car"></i> 避開龍潭車潮</h3>
+            <p>務必 7 點前上國道三號。</p>
+        </div>
+
+        <div class="event-card">
             <span class="time">09:00 - 11:30</span>
-            <h2><i class="fas fa-leaf"></i> 集元果觀光工廠</h2>
-            <div class="tag-row">
-                <span class="tag">南投最南起點</span>
-                <span class="tag">深度漫步</span>
-            </div>
-            <div class="content">
-                特色：園區開闊好停車，深度漫步香蕉生態園區，避開首波人潮。<br>
-                <strong>咖啡/補給：</strong> 園區內森林餐廳（推薦：蕉花拿鐵、山蕉蛋糕）。
-            </div>
-            <a href="https://www.google.com/maps/search/?api=1&query=南投縣集集鎮大坪巷38號" target="_blank" class="btn-nav">
-                <i class="fas fa-location-arrow"></i> 開啟導航 (集集)
-            </a>
+            <h3><i class="fas fa-map-marker-alt"></i> 集元果觀光工廠</h3>
+            <p>香蕉生態園區、森林餐廳。南投縣集集鎮大坪巷38號。</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=集元果觀光工廠" class="btn-nav">開啟導航</a>
         </div>
 
-        <!-- 第二站 -->
         <div class="event-card">
-            <div class="status-dot"></div>
             <span class="time">12:00 - 13:00</span>
-            <h2><i class="fas fa-utensils"></i> 榕樹下扣仔嗲</h2>
-            <div class="tag-row">
-                <span class="tag">在地老店</span>
-                <span class="tag">草屯必吃</span>
-            </div>
-            <div class="content">
-                特色：在地傳統美食，正午抵達減少排隊。<br>
-                <strong>必吃推薦：</strong> 現炸蚵嗲、肉嗲，搭配獨門醬料。
-            </div>
-            
-            <div class="highlight-box">
-                <strong><i class="fas fa-parking"></i> 關鍵停車攻略：</strong><br>
-                店門口巷弄狹小，請直接導航至附近的<strong>「仁愛公園停車場」</strong>，步行約 3-5 分鐘抵達。
-            </div>
-            
-            <a href="https://www.google.com/maps/search/?api=1&query=南投縣草屯鎮中正路571號" target="_blank" class="btn-nav parking-btn">
-                <i class="fas fa-parking"></i> 導航至仁愛停車場
-            </a>
-            <a href="https://www.google.com/maps/search/?api=1&query=南投縣草屯鎮玉峰街92號" target="_blank" class="btn-nav">
-                <i class="fas fa-store"></i> 導航至店家 (步行參考)
-            </a>
+            <h3><i class="fas fa-utensils"></i> 榕樹下扣仔嗲</h3>
+            <p>必吃：現炸蚵嗲、肉嗲。請停「仁愛公園停車場」。</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=草屯仁愛公園停車場" class="btn-nav">導航至停車場</a>
         </div>
 
-        <!-- 第三站 -->
         <div class="event-card">
-            <div class="status-dot"></div>
             <span class="time">13:15 - 14:00</span>
-            <h2><i class="fas fa-coffee"></i> 九二咖啡故事館</h2>
-            <div class="tag-row">
-                <span class="tag">國姓最北端</span>
-                <span class="tag">舊穀倉改建</span>
-            </div>
-            <div class="content">
-                特色：行程最北端，緊鄰國道六號交流道。回程前最後休息站。<br>
-                <strong>咖啡/補給：</strong> 國姓精品手沖咖啡、黑糖拿鐵、農會伴手禮。
-            </div>
-            <a href="https://www.google.com/maps/search/?api=1&query=南投縣國姓鄉中正路二段357號" target="_blank" class="btn-nav">
-                <i class="fas fa-location-arrow"></i> 開啟導航 (國姓)
-            </a>
+            <h3><i class="fas fa-coffee"></i> 九二咖啡故事館</h3>
+            <p>國道六號旁，舊穀倉咖啡。14:00 準時北返。</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=九二咖啡故事館" class="btn-nav">開啟導航</a>
         </div>
-
-        <!-- 回程 -->
-        <div class="event-card alert">
-            <div class="status-dot"></div>
-            <span class="time">14:00 準時北返</span>
-            <h2><i class="fas fa-clock"></i> 黃金鐵則</h2>
-            <div class="content">
-                為了在假日 16:00 前回到桃園，請務必在<strong>下午 2 點整離開國姓</strong>，上國道六號接國道三號。
-            </div>
-        </div>
-
-        <!-- 抵達 -->
-        <div class="event-card">
-            <div class="status-dot"></div>
-            <span class="time">16:00</span>
-            <h2><i class="fas fa-home"></i> 預計抵達桃園</h2>
-            <div class="content">
-                結束充實的南投慢旅行，溫暖的家。
-            </div>
-        </div>
-
     </div>
 </div>
 
 <footer>
     &copy; 2025 南投慢旅計畫 | 祝旅途愉快
 </footer>
+
+<script>
+    // 翻譯狀態設定
+    let currentMode = 'zh-en'; // zh-en 或 en-zh
+    const recognition = window.SpeechRecognition || window.webkitSpeechRecognition ? new (window.SpeechRecognition || window.webkitSpeechRecognition)() : null;
+    
+    if (recognition) {
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        
+        recognition.onresult = (event) => {
+            const text = event.results[0][0].transcript;
+            document.getElementById('inputText').value = text;
+            stopMicStyle();
+            performTranslation(); // 語音辨識完自動翻譯
+        };
+
+        recognition.onerror = () => stopMicStyle();
+        recognition.onend = () => stopMicStyle();
+    }
+
+    // 切換語言模式
+    function toggleLanguage() {
+        if (currentMode === 'zh-en') {
+            currentMode = 'en-zh';
+            document.getElementById('langFromText').innerText = '英文 (English)';
+            document.getElementById('langToText').innerText = '繁體中文';
+            document.getElementById('inputText').placeholder = 'Type here or tap mic to speak...';
+        } else {
+            currentMode = 'zh-en';
+            document.getElementById('langFromText').innerText = '繁體中文';
+            document.getElementById('langToText').innerText = '英文 (English)';
+            document.getElementById('inputText').placeholder = '請輸入文字或點擊右下角麥克風說話...';
+        }
+    }
+
+    // 語音辨識
+    function startSpeechRecognition() {
+        if (!recognition) {
+            alert("您的瀏覽器不支援語音辨識功能。");
+            return;
+        }
+        recognition.lang = currentMode === 'zh-en' ? 'zh-TW' : 'en-US';
+        recognition.start();
+        document.getElementById('micBtn').classList.add('recording');
+    }
+
+    function stopMicStyle() {
+        document.getElementById('micBtn').classList.remove('recording');
+    }
+
+    // 呼叫翻譯 API (MyMemory)
+    async function performTranslation() {
+        const text = document.getElementById('inputText').value.trim();
+        if (!text) return;
+
+        const outputArea = document.getElementById('resultArea');
+        const outputText = document.getElementById('outputText');
+        
+        outputText.innerText = "翻譯中...";
+        outputArea.style.display = 'block';
+
+        const langPair = currentMode === 'zh-en' ? 'zh-TW|en' : 'en|zh-TW';
+        const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${langPair}`;
+
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+            if (data.responseData) {
+                outputText.innerText = data.responseData.translatedText;
+            } else {
+                outputText.innerText = "翻譯失敗，請稍後再試。";
+            }
+        } catch (error) {
+            outputText.innerText = "網路錯誤或 API 限制。";
+        }
+    }
+
+    // 語音合成 (TTS)
+    function speakResult() {
+        const text = document.getElementById('outputText').innerText;
+        const msg = new SpeechSynthesisUtterance();
+        msg.text = text;
+        msg.lang = currentMode === 'zh-en' ? 'en-US' : 'zh-TW';
+        window.speechSynthesis.speak(msg);
+    }
+
+    function clearAll() {
+        document.getElementById('inputText').value = '';
+        document.getElementById('resultArea').style.display = 'none';
+    }
+</script>
 
 </body>
 </html>

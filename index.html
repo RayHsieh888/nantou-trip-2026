@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025.12.25 南投深度慢旅行程表</title>
+    <!-- 引入 Google 字體與 Icon -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2d5a27; /* 森林綠 */
+            --secondary-color: #8da05e;
+            --accent-color: #e67e22; /* 暖橘 - 提示 */
+            --bg-color: #f8f9f5;
+            --card-bg: #ffffff;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1590424753062-32517f3801fc?auto=format&fit=crop&w=800&q=80'); /* 森林意境圖 */
+            background-size: cover;
+            background-position: center;
+            color: white;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .date-badge {
+            background: var(--accent-color);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        h1 { margin: 15px 0 5px 0; font-size: 1.8rem; }
+        .subtitle { font-weight: 300; opacity: 0.9; }
+
+        /* 時間軸樣式 */
+        .timeline {
+            position: relative;
+            margin: 30px 0;
+            padding-left: 20px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 5px;
+            bottom: 5px;
+            width: 2px;
+            background: var(--secondary-color);
+            opacity: 0.3;
+        }
+
+        .event-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            position: relative;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--secondary-color);
+        }
+
+        .event-card.alert {
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .time {
+            font-weight: 700;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .event-card h2 {
+            margin: 0 0 10px 0;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .event-card h2 i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+
+        .tag-row {
+            margin-bottom: 15px;
+        }
+
+        .tag {
+            background: #f0f4ef;
+            color: var(--primary-color);
+            padding: 3px 10px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            margin-right: 5px;
+        }
+
+        .content {
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        .highlight-box {
+            background: #fff8ee;
+            border: 1px dashed var(--accent-color);
+            padding: 12px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        .btn-nav {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin-top: 15px;
+            width: 100%;
+            box-sizing: border-box;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn-nav:hover { background: #1e3d1a; }
+        .btn-nav i { margin-right: 8px; }
+
+        .parking-btn {
+            background: #5d6d7e;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #888;
+            font-size: 0.85rem;
+        }
+
+        .status-dot {
+            position: absolute;
+            left: -21px;
+            top: 25px;
+            width: 10px;
+            height: 10px;
+            background: var(--secondary-color);
+            border-radius: 50%;
+            border: 3px solid var(--bg-color);
+        }
+
+        .alert .status-dot {
+            background: var(--accent-color);
+        }
+
+        /* 手機端優化 */
+        @media (max-width: 480px) {
+            .container { padding: 15px; }
+            h1 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="date-badge">2025.12.25 THU</div>
+    <h1>南投深度慢旅</h1>
+    <div class="subtitle">最終行程確認單</div>
+</header>
+
+<div class="container">
+    
+    <div class="timeline">
+        
+        <!-- 出發點 -->
+        <div class="event-card alert">
+            <div class="status-dot"></div>
+            <span class="time">07:00</span>
+            <h2><i class="fas fa-car-side"></i> 桃園準時出發</h2>
+            <div class="content">
+                <strong>重點提示：</strong> 務必 7 點前上國道三號，避開龍潭至新竹段的假日南下車潮。
+            </div>
+        </div>
+
+        <!-- 第一站 -->
+        <div class="event-card">
+            <div class="status-dot"></div>
+            <span class="time">09:00 - 11:30</span>
+            <h2><i class="fas fa-leaf"></i> 集元果觀光工廠</h2>
+            <div class="tag-row">
+                <span class="tag">南投最南起點</span>
+                <span class="tag">深度漫步</span>
+            </div>
+            <div class="content">
+                特色：園區開闊好停車，深度漫步香蕉生態園區，避開首波人潮。<br>
+                <strong>咖啡/補給：</strong> 園區內森林餐廳（推薦：蕉花拿鐵、山蕉蛋糕）。
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=南投縣集集鎮大坪巷38號" target="_blank" class="btn-nav">
+                <i class="fas fa-location-arrow"></i> 開啟導航 (集集)
+            </a>
+        </div>
+
+        <!-- 第二站 -->
+        <div class="event-card">
+            <div class="status-dot"></div>
+            <span class="time">12:00 - 13:00</span>
+            <h2><i class="fas fa-utensils"></i> 榕樹下扣仔嗲</h2>
+            <div class="tag-row">
+                <span class="tag">在地老店</span>
+                <span class="tag">草屯必吃</span>
+            </div>
+            <div class="content">
+                特色：在地傳統美食，正午抵達減少排隊。<br>
+                <strong>必吃推薦：</strong> 現炸蚵嗲、肉嗲，搭配獨門醬料。
+            </div>
+            
+            <div class="highlight-box">
+                <strong><i class="fas fa-parking"></i> 關鍵停車攻略：</strong><br>
+                店門口巷弄狹小，請直接導航至附近的<strong>「仁愛公園停車場」</strong>，步行約 3-5 分鐘抵達。
+            </div>
+            
+            <a href="https://www.google.com/maps/search/?api=1&query=南投縣草屯鎮中正路571號" target="_blank" class="btn-nav parking-btn">
+                <i class="fas fa-parking"></i> 導航至仁愛停車場
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&query=南投縣草屯鎮玉峰街92號" target="_blank" class="btn-nav">
+                <i class="fas fa-store"></i> 導航至店家 (步行參考)
+            </a>
+        </div>
+
+        <!-- 第三站 -->
+        <div class="event-card">
+            <div class="status-dot"></div>
+            <span class="time">13:15 - 14:00</span>
+            <h2><i class="fas fa-coffee"></i> 九二咖啡故事館</h2>
+            <div class="tag-row">
+                <span class="tag">國姓最北端</span>
+                <span class="tag">舊穀倉改建</span>
+            </div>
+            <div class="content">
+                特色：行程最北端，緊鄰國道六號交流道。回程前最後休息站。<br>
+                <strong>咖啡/補給：</strong> 國姓精品手沖咖啡、黑糖拿鐵、農會伴手禮。
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=南投縣國姓鄉中正路二段357號" target="_blank" class="btn-nav">
+                <i class="fas fa-location-arrow"></i> 開啟導航 (國姓)
+            </a>
+        </div>
+
+        <!-- 回程 -->
+        <div class="event-card alert">
+            <div class="status-dot"></div>
+            <span class="time">14:00 準時北返</span>
+            <h2><i class="fas fa-clock"></i> 黃金鐵則</h2>
+            <div class="content">
+                為了在假日 16:00 前回到桃園，請務必在<strong>下午 2 點整離開國姓</strong>，上國道六號接國道三號。
+            </div>
+        </div>
+
+        <!-- 抵達 -->
+        <div class="event-card">
+            <div class="status-dot"></div>
+            <span class="time">16:00</span>
+            <h2><i class="fas fa-home"></i> 預計抵達桃園</h2>
+            <div class="content">
+                結束充實的南投慢旅行，溫暖的家。
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<footer>
+    &copy; 2025 南投慢旅計畫 | 祝旅途愉快
+</footer>
+
+</body>
+</html>
